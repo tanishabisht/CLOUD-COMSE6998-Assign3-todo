@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: tanisha123/todoapp:rolling  # Replace with your actual image details
+        ports:
+        - containerPort: 5000
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 3
