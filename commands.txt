@@ -1,0 +1,5 @@
+
+docker build -t tanisha123/todoapp:latest .
+docker-compose up
+docker login -u tanisha123
+docker push tanisha123/todoapp:latest
