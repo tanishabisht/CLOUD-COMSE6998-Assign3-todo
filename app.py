@@ -16,11 +16,18 @@ app = Flask(__name__)
 title = "TODO with Flask"
 heading = "ToDo Reminder"
 
-def redirect_url():
-	return request.args.get('next') or \
-		request.referrer or \
-		url_for('index')
+@app.route('/health')
+def health():
+    return '', 200
 
+@app.route('/live')
+def live():
+	return '', 200
+
+@app.route('/crash')
+def crash():
+	return 'Internal Server Error', 500
+	
 @app.route("/list")
 def lists ():
 	#Display the all Tasks
