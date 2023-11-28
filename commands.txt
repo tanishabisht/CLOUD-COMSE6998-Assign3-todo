@@ -3,3 +3,22 @@ docker build -t tanisha123/todoapp:latest .
 docker-compose up
 docker login -u tanisha123
 docker push tanisha123/todoapp:latest
+
+
+minikube start
+cd kubernetes/
+kubectl apply -f flask-deployment.yaml 
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f flask-service.yaml
+kubectl apply -f mongodb-service.yaml
+
+kubectl get deployments
+kubectl get services
+
+minikube service mongodb
+minikube service flask-app
+
+minikube stop
+
+kubectl delete all --all
+kubectl delete service kubernetes
