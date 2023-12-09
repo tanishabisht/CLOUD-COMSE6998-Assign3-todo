@@ -45,3 +45,52 @@ docker build -t tanisha123/todoapp:rolling .
 docker-compose up
 docker login -u tanisha123
 docker push tanisha123/todoapp:rolling
+
+------
+
+
+docker build -t tanisha123/todoapp:health .
+docker-compose up
+docker login -u tanisha123
+docker push tanisha123/todoapp:health
+
+
+
+cd kubernetes-health/
+kubectl apply -f flask-deployment.yaml 
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f flask-service.yaml
+kubectl apply -f mongodb-service.yaml
+
+
+kubectl describe pod <pod-name>
+
+
+-------
+
+
+brew install helm
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+
+helm install prometheus prometheus-community/prometheus
+kubectl get deployments -n default
+
+
+helm install alertmanager prometheus-community/alertmanager
+kubectl get deployments -n default
+
+helm install node-exporter prometheus-community/prometheus-node-exporter
+kubectl get deployments -n default
+
+kubectl port-forward $(kubectl get pods --selector=app=prometheus -n default -o jsonpath="{.items[0].metadata.name}") 9090:9090
+http://localhost:9090 
+
+helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --set url=https://hooks.slack.com/services/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
+
+
+
+kubectl apply -f prometheus-rules.yaml

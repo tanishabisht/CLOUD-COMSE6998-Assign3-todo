@@ -1,5 +1,13 @@
 # To Do App
 
+## Congifurations
+1. kubernetes
+2. kubernetes-rolling
+3. kubernetes-health
+4. kubernetes-alert
+
+Slack webhook url: https://hooks.slack.com/services/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
+
 ## KEYPOINTS
 Pods - Responsible for specific tasks
 Deployments - Ensures right number of pods are there for the task; task is defined here as well and pods are created.
